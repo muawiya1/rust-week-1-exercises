@@ -177,14 +177,13 @@ pub fn find_utxo_with_min_value(utxos: &[Utxo], target: u64) -> Option<Utxo> {
     let mut smallest_value_utxo = u64::MAX;
     let mut target_utxo = None;
     for utxo in utxos {
-        if utxo.value >= target
-            && utxo.value < smallest_value_utxo {
-                smallest_value_utxo = utxo.value;
-                target_utxo = Some(utxo.clone());
-            }
+        if utxo.value >= target && utxo.value < smallest_value_utxo {
+            smallest_value_utxo = utxo.value;
+            target_utxo = Some(utxo.clone());
+        }
     }
     target_utxo
-}
+ }
 
 /// Create a UTXO map from txid, vout, and arbitrary extra string fields.
 pub fn create_utxo(
