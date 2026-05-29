@@ -36,9 +36,9 @@ pub fn is_valid_tx_fee(fee: f64) -> bool {
 pub fn is_large_balance(balance: f64) -> bool {
     // TODO: Compare balance to 50.0 and return result
     if balance > 50.0 { 
-	true 
+        true 
     } else { 
-	false 
+        false 
     }
 }
 
@@ -62,9 +62,9 @@ pub fn is_mainnet(network: &str) -> bool {
     // TODO: Convert network to lowercase and compare with "mainnet"
     let network = network.to_lowercase();
     if network == "mainnet" { 
-	true 
+        true 
     } else { 
-	false 
+        false 
     }
 }
 
