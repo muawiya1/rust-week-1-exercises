@@ -35,10 +35,10 @@ pub fn is_valid_tx_fee(fee: f64) -> bool {
 /// Return true if the wallet balance is greater than 50.0 BTC.
 pub fn is_large_balance(balance: f64) -> bool {
     // TODO: Compare balance to 50.0 and return result
-    if balance > 50.0 { 
-        true 
-    } else { 
-        false 
+    if balance > 50 {
+        true
+    } else {
+        false
     }
 }
 
@@ -61,10 +61,10 @@ pub fn tx_priority(size_bytes: u64, fee_btc: f64) -> &'static str {
 pub fn is_mainnet(network: &str) -> bool {
     // TODO: Convert network to lowercase and compare with "mainnet"
     let network = network.to_lowercase();
-    if network == "mainnet" { 
-        true 
-    } else { 
-        false 
+    if network =="mainnet" {
+        true
+    } else {
+        false
     }
 }
 
