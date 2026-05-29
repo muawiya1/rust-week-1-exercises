@@ -18,28 +18,19 @@ pub struct Utxo {
 /// Calculate the total Bitcoin reward for a given number of mined blocks.
 pub fn calculate_total_reward(blocks_mined: u64) -> f64 {
     // TODO: Multiply blocks_mined by MINING_REWARD and return result
-    let result = blocks_mined as f64 * MINING_REWARD;
-    result
+    blocks_mined as f64 * MINING_REWARD
 }
 
 /// Return true if the transaction fee is between 0.00001 and 0.01 BTC.
 pub fn is_valid_tx_fee(fee: f64) -> bool {
     // TODO: Check if fee is between 0.00001 and 0.01 BTC (inclusive)
-    if fee >= 0.00001 && fee <= 0.01 {
-        true
-    } else {
-        false
-    }
+    (0.00001..=0.01).contains(&fee)
 }
 
 /// Return true if the wallet balance is greater than 50.0 BTC.
 pub fn is_large_balance(balance: f64) -> bool {
     // TODO: Compare balance to 50.0 and return result
-    if balance > 50.0 {
-        true
-    } else {
-        false
-    }
+    balance > 50.0
 }
 
 /// Return the priority of a transaction ("high", "medium", "low") based on fee rate.
@@ -61,21 +52,13 @@ pub fn tx_priority(size_bytes: u64, fee_btc: f64) -> &'static str {
 pub fn is_mainnet(network: &str) -> bool {
     // TODO: Convert network to lowercase and compare with "mainnet"
     let network = network.to_lowercase();
-    if network == "mainnet" {
-        true
-    } else {
-        false
-    }
+    network == "mainnet"
 }
 
 /// Return true if value is in the inclusive range 100..=200.
 pub fn is_in_range(value: i64) -> bool {
     // TODO: Check if 100 <= value <= 200
-    if value >= 100 && value <= 200 {
-        true
-    } else {
-        false
-    }
+    (100..=200).contains(&value)
 }
 
 /// Return true if both references point to the exact same object in memory.
@@ -88,8 +71,7 @@ pub fn is_same_wallet<T>(wallet1: &T, wallet2: &T) -> bool {
 /// Normalize a Bitcoin address by trimming whitespace and lowercasing.
 pub fn normalize_address(address: &str) -> String {
     // TODO: Trim leading/trailing whitespace and convert to lowercase
-    let address = address.trim().to_lowercase();
-    address
+    address.trim().to_lowercase()
 }
 
 /// Append a new UTXO to the list and return the updated list.
@@ -116,8 +98,7 @@ pub fn get_wallet_details() -> (String, f64) {
     // TODO: Return a tuple with wallet name and balance
     let wallet_name = "satoshi_wallet".to_owned();
     let wallet_balance = 50.0;
-    let get_wallet = (wallet_name, wallet_balance);
-    get_wallet
+    (wallet_name, wallet_balance)
 }
 
 /// Get the status of a transaction from the mempool or "not found".
@@ -140,8 +121,7 @@ pub fn unpack_wallet_info(wallet_info: (String, f64)) -> String {
 /// Convert BTC to satoshis (1 BTC = 100,000,000 sats).
 pub fn calculate_sats(btc: f64) -> u64 {
     // TODO: Multiply btc by BTC_TO_SATS and return as u64
-    let result = (btc * BTC_TO_SATS as f64) as u64;
-    result
+    (btc * BTC_TO_SATS as f64) as u64
 }
 
 /// Generate a mock Bitcoin address of length 32 with the given prefix.
@@ -197,13 +177,11 @@ pub fn find_utxo_with_min_value(utxos: &[Utxo], target: u64) -> Option<Utxo> {
     let mut smallest_value_utxo = u64::MAX;
     let mut target_utxo = None;
     for utxo in utxos {
-        if utxo.value >= target {
-            if utxo.value < smallest_value_utxo {
+        if utxo.value >= target
+            && utxo.value < smallest_value_utxo {
                 smallest_value_utxo = utxo.value;
-
                 target_utxo = Some(utxo.clone());
             }
-        }
     }
     target_utxo
 }
