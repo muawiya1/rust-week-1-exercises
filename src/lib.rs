@@ -183,7 +183,7 @@ pub fn find_utxo_with_min_value(utxos: &[Utxo], target: u64) -> Option<Utxo> {
         }
     }
     target_utxo
- }
+}
 
 /// Create a UTXO map from txid, vout, and arbitrary extra string fields.
 pub fn create_utxo(
